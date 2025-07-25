@@ -1,71 +1,86 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import { FaSearch } from 'react-icons/fa';
+import { productData } from './ProductDetail';
 
 const Products = () => {
+  // Calculate actual product counts from productData
+  const getProductCount = (categorySlug: string) => {
+    const categoryData = productData[categorySlug];
+    if (categoryData && categoryData.products) {
+      return categoryData.products.length;
+    }
+    return 0;
+  };
+
+  // Get CCTV count from productData only (16 products)
+  const getCCTVCount = () => {
+    return getProductCount('cctv'); // Only count products that are actually available
+  };
+
   const productCategories = [
     {
       name: 'CCTV',
       description: 'Security cameras and surveillance systems',
       image: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=600&q=80',
-      itemCount: '20+ systems',
+      itemCount: `${getCCTVCount()}+ products`,
       slug: 'cctv'
     },
     {
       name: 'Network Solution',
       description: 'Latest electronic devices and gadgets',
       image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
-      itemCount: '50+ items',
+      itemCount: `${getProductCount('network-solution')}+ items`,
       slug: 'network-solution'
     },
     {
       name: 'Softwares',
       description: 'Custom software and applications',
       image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=600&q=80',
-      itemCount: '25+ solutions',
+      itemCount: `${getProductCount('softwares')}+ solutions`,
       slug: 'softwares'
     },
     {
       name: 'Computer and Laptops',
       description: 'Quality hardware parts and components',
       image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=600&q=80',
-      itemCount: '100+ components',
+      itemCount: `${getProductCount('computer-laptops')}+ components`,
       slug: 'computer-laptops'
     },
     {
       name: 'Satellite',
       description: 'Professional business and productivity tools',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80',
-      itemCount: '30+ tools',
+      itemCount: `${getProductCount('satellite')}+ tools`,
       slug: 'satellite'
     },
     {
       name: 'Fiber Solution',
       description: 'Digital products and online services',
       image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80',
-      itemCount: '40+ services',
+      itemCount: `${getProductCount('fiber-solution')}+ services`,
       slug: 'fiber-solution'
     },
     {
       name: 'Interphone Solution',
       description: 'Expert consultation and advisory services',
       image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80',
-      itemCount: '15+ packages',
+      itemCount: `${getProductCount('interphone-solution')}+ packages`,
       slug: 'interphone-solution'
     },
     {
       name: '3D Printers & CNC',
       description: '3D printing and CNC machining solutions',
       image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80',
-      itemCount: '10+ machines',
+      itemCount: `${getProductCount('3d-printers-cnc')}+ machines`,
       slug: '3d-printers-cnc'
     },
     {
       name: 'Automation System',
       description: 'Smart automation and control systems',
       image: 'https://images.unsplash.com/photo-1487887235947-a955ef187fcc?auto=format&fit=crop&w=600&q=80',
-      itemCount: '15+ systems',
+      itemCount: `${getProductCount('automation-system')}+ systems`,
       slug: 'automation-system'
     }
   ];

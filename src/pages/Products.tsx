@@ -19,6 +19,15 @@ const Products = () => {
     return getProductCount('cctv'); // Only count products that are actually available
   };
 
+  // Check if category has products on sale
+  const hasSaleItems = (categorySlug: string) => {
+    const categoryData = productData[categorySlug];
+    if (categoryData && categoryData.products) {
+      return categoryData.products.some((product: any) => product.salePrice);
+    }
+    return false;
+  };
+
   const productCategories = [
     {
       name: 'CCTV',
@@ -132,6 +141,11 @@ const Products = () => {
                   <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-blue-600 text-white px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-semibold">
                     {category.itemCount}
                   </div>
+                  {hasSaleItems(category.slug) && (
+                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-red-500 text-white px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-semibold animate-pulse">
+                      SALE
+                    </div>
+                  )}
                 </div>
                 <div className="p-3 sm:p-6">
                   <h3 className="text-base sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">

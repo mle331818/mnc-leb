@@ -967,7 +967,7 @@ const ProductDetail = () => {
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div 
-                    className="cursor-pointer"
+                    className="cursor-pointer relative"
                     onClick={() => navigate(`/products/${category}/${product.id}`)}
                   >
                     <img
@@ -975,6 +975,11 @@ const ProductDetail = () => {
                       alt={product.name}
                       className="w-full h-32 sm:h-48 object-cover"
                     />
+                    {product.salePrice && (
+                      <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold animate-pulse">
+                        SALE
+                      </div>
+                    )}
                     <div className="p-3 sm:p-6">
                       <h3 className="text-base sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">
                         {product.name}

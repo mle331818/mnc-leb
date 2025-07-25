@@ -984,9 +984,6 @@ const ProductDetail = () => {
                       <h3 className="text-base sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">
                         {product.name}
                       </h3>
-                      <p className="text-xs sm:text-gray-600 sm:text-base mb-2 sm:mb-4">
-                        {product.description}
-                      </p>
                       <div className="flex items-center justify-between mb-2 sm:mb-4">
                         <span className="text-lg sm:text-2xl font-bold text-blue-600">
                           {product.salePrice ? (
